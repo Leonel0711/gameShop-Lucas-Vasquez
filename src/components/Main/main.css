@@ -1,0 +1,48 @@
+main {
+    margin: 0;
+}
+
+.containerProducts {
+    padding: 2rem;
+}
+
+.contProducto {
+    max-width: 16rem;
+    min-width: 6rem;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow:
+        1px 1px 41px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+
+}
+
+.nameProduct {
+    text-align: center;
+}
+
+.modalGroup {
+
+    justify-content: space-between;
+    margin: 5px;
+    padding: 5px;
+    border: 2px #CCCCCC solid;
+    border-radius: 10px;
+}
+
+.btnsAdd {
+
+    display: flex;
+    justify-content: center;
+}
+
+.btnsAdd button {
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    border: 2px #4f92f6 solid;
+    color: #4f92f6;
+    border-radius: 10px;
+}
