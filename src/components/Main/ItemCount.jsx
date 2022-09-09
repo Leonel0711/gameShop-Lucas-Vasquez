@@ -3,13 +3,11 @@ import { useState } from "react";
 function ItemCount({ stock, initial, onAdd }) {
     const tStock= stock>=1?true : false;
     const [count,setCount] = useState(initial);
-
     const handlerPlus = ()=>{
         count<stock&&setCount(count+1);
-        
     }
     const handlerMinus=()=>{
-        count>1&&setCount(count-1);
+        count>initial&&setCount(count-1);
     }
 
     return (<div className="contProducto" >
