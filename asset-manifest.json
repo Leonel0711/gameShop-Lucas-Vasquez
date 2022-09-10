@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/gameShop-Lucas-Vasquez/static/css/main.b087f044.css",
+    "main.js": "/gameShop-Lucas-Vasquez/static/js/main.38d2b7db.js",
+    "static/js/787.840e3d13.chunk.js": "/gameShop-Lucas-Vasquez/static/js/787.840e3d13.chunk.js",
+    "index.html": "/gameShop-Lucas-Vasquez/index.html",
+    "main.b087f044.css.map": "/gameShop-Lucas-Vasquez/static/css/main.b087f044.css.map",
+    "main.38d2b7db.js.map": "/gameShop-Lucas-Vasquez/static/js/main.38d2b7db.js.map",
+    "787.840e3d13.chunk.js.map": "/gameShop-Lucas-Vasquez/static/js/787.840e3d13.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b087f044.css",
+    "static/js/main.38d2b7db.js"
+  ]
+}
