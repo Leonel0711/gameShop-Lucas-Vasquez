@@ -1,8 +1,9 @@
+import React from 'react';
 import './navbar.css';
 import CartWidget from './CompNav/CartWidget';
 import BtnNavbar from './CompNav/BtnNavBar';
 import NavBarLinks from './CompNav/NavBarLinks';
-import NavBarBuy from './CompNav/NavBarBuy';   
+import NavBarBuy from './CompNav/NavBarBuy';
 
 
 function Navbar() {

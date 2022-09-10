@@ -6,41 +6,27 @@ main {
     padding: 2rem;
 }
 
-.contProducto {
-    max-width: 16rem;
-    min-width: 6rem;
-    min-height: 10rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow:
-        1px 1px 41px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-
-}
 
 .nameProduct {
     text-align: center;
 }
 
 .modalGroup {
-
     justify-content: space-between;
-    margin: 5px;
-    padding: 5px;
     border: 2px #CCCCCC solid;
     border-radius: 10px;
+    min-width: 15rem;
 }
 
 .btnsAdd {
-
     display: flex;
     justify-content: center;
+    min-width: 15rem;
 }
 
 .btnsAdd button {
     width: 100%;
-    margin: 5px;
+    margin: 5px 0px;
     padding: 5px;
     border: 2px #4f92f6 solid;
     color: #4f92f6;
@@ -69,6 +55,8 @@ main {
 
 .card:hover {
     border: 2px solid #a2a2a2;
+    box-shadow:
+        1px 1px 41px rgba(0, 0, 0, 0.379);
 }
 
 .card img {
@@ -84,4 +72,83 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.fatherDetail {
+    display: flex;
+    box-shadow:
+        1px 1px 41px rgba(0, 0, 0, 0.2);
+    margin: 2rem auto;
+    min-height: 40rem;
+}
+
+
+.fatherDetail .imgDetail,
+.fatherDetail .productDetail {
+    width: 50%;
+}
+
+.imgDetail {
+    display: flex;
+    align-items: center;
+}
+
+.imgDetail img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.productDetail {
+    padding: 3rem;
+}
+
+.titleDetail {
+    font-size: 1.6rem;
+}
+
+.stockDetail {
+    color: #a2a2a2;
+}
+
+.priceDetail {
+    font-size: 1.5rem;
+}
+
+.brandDetail {
+    background-color: #4F92F6;
+    color: white;
+    width: auto;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.countDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+    .fatherDetail {
+        flex-direction: column;
+    }
+
+    .fatherDetail div {
+        width: 100%;
+    }
+
+    .fatherDetail div:first-child {
+        display: flex;
+        justify-content: center;
+    }
+
+    .imgDetail img {
+        max-width: 80%;
+        max-height: 80%;
+    }
+
+    .productDetail {
+        padding: 1rem;
+    }
 }

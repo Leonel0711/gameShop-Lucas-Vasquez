@@ -1,10 +1,11 @@
 import "./main.css"
-import ItemListContainer from "./ItemListContainer";
+/* import ItemListContainer from "./ItemListContainer"; */
+import ItemDetailContain from "./ItemDetailContainer";
 function Main() {
     return (
         <main>
-
-            <ItemListContainer title="Perifericos Gamer" />
+            <ItemDetailContain />
+            {/* <ItemListContainer title="Perifericos Gamer" /> */}
         </main>)
 }
 export default Main;
