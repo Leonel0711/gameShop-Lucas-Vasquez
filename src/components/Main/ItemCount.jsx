@@ -4,7 +4,7 @@ function ItemCount({ stock, initial, onAdd }) {
     const tStock = stock >= 1 ? true : false;
     const [count, setCount] = useState(initial);
     const handlerPlus = () => {
-        count < stock && setCount(count + 1);
+        count < stock ? setCount(count + 1) : alert("Stock limitado, no puede agregar mas");
     }
     const handlerMinus = () => {
         count > initial && setCount(count - 1);
