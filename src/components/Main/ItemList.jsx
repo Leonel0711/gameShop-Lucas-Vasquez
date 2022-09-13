@@ -1,5 +1,6 @@
 import React from 'react'
 import Item from './Item';
+
 function ItemList({ data }) {
   return (
     <div id='itemList'>
@@ -11,6 +12,7 @@ function ItemList({ data }) {
           img={item.img}
           marca={item.marca}
           precio={item.precio}
+          categoria={item.category}
         />
       ))}
     </div>

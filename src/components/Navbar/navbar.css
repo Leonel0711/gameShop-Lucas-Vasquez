@@ -39,12 +39,18 @@ nav {
 #navbarBrand {
     border: none;
     font-size: 1.8rem;
+    text-decoration: none;
 }
 
 .red {
     font-size: 1.8rem;
     animation: rgb 8s infinite alternate linear;
     font-weight: bold;
+}
+
+.links-list a {
+    text-decoration: none;
+    color: white;
 }
 
 .link {

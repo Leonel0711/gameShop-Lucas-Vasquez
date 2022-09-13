@@ -44,11 +44,18 @@ main {
     gap: 2rem;
 }
 
+@media screen and (max-width: 740px) {
+    #itemList {
+        justify-content: center;
+    }
+}
+
 .card {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-height: 30rem;
+    max-height: 35rem;
+    min-height: 35rem;
     padding: 0 1rem;
     border: 2px solid #cccccc;
     box-shadow:
