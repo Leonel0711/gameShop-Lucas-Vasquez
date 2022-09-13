@@ -76,6 +76,7 @@ const dataFromDB = [{
     img: "https://http2.mlstatic.com/D_NQ_NP_760857-MLA44771394445_022021-O.webp",
     description: "¡Experimentá la adrenalina de sumergirte en la escena de otra manera! Tener auriculares específicos para jugar cambia completamente tu experiencia en cada partida. Con los Logitech G733 no te perdés ningún detalle y escuchás el audio tal y como fue diseñado por los creadores.",
     marca: "Logitech",
+    precio: 31568,
     category: "Auriculares"
 }, {
     id: 302,
