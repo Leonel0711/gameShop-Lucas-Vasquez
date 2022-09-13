@@ -1,5 +1,6 @@
 import Sublinks from "./Sublinks";
 function Dropwdown({ title, subLinks }) {
+    //DropwDown componente para crear botones con sublinks osea botones desplegables
     return (<div className='div-links nav-item dropdown'>
         <button className="nav-link dropdown-toggle link" data-bs-toggle="dropdown" aria-expanded="false">
             {title}

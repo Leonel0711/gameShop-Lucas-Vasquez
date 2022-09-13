@@ -1,3 +1,4 @@
+//Array con todos los objetos/Productos a usar e importar donde la necesitemos
 const dataFromDB = [{
     id: 100,
     title: "Teclado Hyperx Alloy Origins Rgb Mecanico Gaming Blue",

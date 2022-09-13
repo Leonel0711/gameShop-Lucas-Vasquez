@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 
 function Item({ id, title, img, marca, precio, categoria }) {
+  //Recibe los datos y devuelve un componente con esos datos
   return (
     <div className="card" id={id} style={{ width: '18rem' }}>
       <div>
