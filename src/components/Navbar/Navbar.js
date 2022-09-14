@@ -3,7 +3,6 @@ import './navbar.css';
 import CartWidget from './CompNav/CartWidget';
 import BtnNavbar from './CompNav/BtnNavBar';
 import NavBarLinks from './CompNav/NavBarLinks';
-import NavBarBuy from './CompNav/NavBarBuy';
 import { Link } from "react-router-dom"
 //Navbar con el CardWidget sin efecto aun, un navbar-Brand con enlace para cambiar la direccion.
 function Navbar() {
@@ -15,12 +14,13 @@ function Navbar() {
             </Link>
             <div className="nav_buttons">
                 {/* Btns para mostrar el carrito y la navbar lateral */}
-                <CartWidget />
+                <Link to="/gameShop-Lucas-Vasquez/cart">
+                    <CartWidget />
+                </Link>
                 <BtnNavbar />
             </div>
-            {/* NavbarLateral de los links de la pagina y Navbar lateral del carrito */}
+            {/* NavbarLateral de los links de la pagina*/}
             <NavBarLinks />
-            <NavBarBuy />
         </div>
     </nav>
 }

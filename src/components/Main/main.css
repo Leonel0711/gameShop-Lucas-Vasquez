@@ -44,7 +44,7 @@ main {
     gap: 2rem;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 780px) {
     #itemList {
         justify-content: center;
     }
@@ -55,6 +55,7 @@ main {
     align-items: center;
     justify-content: center;
     max-height: 35rem;
+    width: 18rem;
     min-height: 35rem;
     padding: 0 1rem;
     border: 2px solid #cccccc;
@@ -162,4 +163,8 @@ main {
     .productDetail {
         padding: 1rem;
     }
+}
+
+.mainCarrito {
+    height: 50vh;
 }

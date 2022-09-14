@@ -2,8 +2,7 @@
 function CartWidget() {
     //Simplemente es un button con un icono ya sea por svg o iconos de react y un numero hardcodeado
     return (
-        <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navBarCarrito"
-            aria-controls="navBarCarrito" id="btnCarritoNav">
+        <button className="navbar-toggler" type="button" id="btnCarritoNav">
             <span className="sc-dkzDqf eOXMum"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 fill="none" viewBox="0 0 24 24" className="shopping-card-icon">
                 <path fill="white"

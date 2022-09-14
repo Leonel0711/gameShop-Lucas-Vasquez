@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import ItemListContainer from "./components/Main/ItemListContainer";
 import ItemDetailContain from "./components/Main/ItemDetailContainer";
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Cart from "./components/Main/Cart";
 
 //Funcion compiladora de los componentes creados
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/gameShop-Lucas-Vasquez/" element={<ItemListContainer title="Perifericos Gamer" />} />
             <Route path="/gameShop-Lucas-Vasquez/:categoria" element={<ItemListContainer title="Perifericos Gamer" />} />
             <Route path="/gameShop-Lucas-Vasquez/:categoria/:id" element={<ItemDetailContain />} />
+            <Route path="/gameShop-Lucas-Vasquez/cart" element={<Cart />} />
           </Routes>
         </main>
         <Footer />

@@ -24,7 +24,7 @@ function ItemDetailContain() {
     return (
         <div>
             <ItemDetail producto={data} />
-        </div>
+        </div >
     )
 }
 
