@@ -11,7 +11,7 @@ function Item({ id, title, img, marca, precio, categoria }) {
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">Marca: {marca}</p>
-        <p className="card-text">precio: ${precio}</p>
+        <p className="card-text">precio: ${new Intl.NumberFormat('es-MX').format(precio)}</p>
         <Link to={`/gameShop-Lucas-Vasquez/${categoria}/${id}`}>
           <button type="button" className="btn btn-primary">Agregar producto</button>
         </Link>
