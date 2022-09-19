@@ -5,26 +5,33 @@ import fetchData from '../../utils/fetchData'
 import { useParams } from "react-router-dom";
 //Contanedor de todos los productos a mostrar, recibe la base de datos y la funcion FetchData
 function ItemListContainer({ title }) {
+    const [showComp, setShowComp] = useState(true);
     //variables para editar un array a pasar por props a ItemList
     const [data, setData] = useState([]);
     //variable para recibir la categoria de la ruta de navegacion
     const { categoria } = useParams();
     //actualiza el contenido del container si se altera la ruta de navegacion.
     useEffect(() => {
+        setShowComp(true);
         //verifica si hay una categoria en la ruta
         if (categoria) {
             //si hay devuelve un array con los elementos que tengan esa categoria y le pasa a ItemList
             fetchData(2000, dataFromDB.filter(producto => producto.category === categoria))
-                .then(result => setData(result))
+                .then(result => {
+                    setData(result)
+                    setShowComp(false);
+                })
         } else {
             //sino devuelve un array con todos los productos para pasarlo a ItemList
             fetchData(2000, dataFromDB)
-                .then(result => setData(result))
+                .then(result => {
+                    setData(result);
+                    setShowComp(false);
+                })
         }
-
     }, [categoria])
     return (<>
-        {data.length === 0 ? <p className="text-center fs-1">...Cargando</p> :
+        {showComp ? <p className="text-center fs-1">...Cargando</p> :
             <><h1 className="text-center">{title}</h1>
                 <section className="container-lg containerProducts ">
                     <ItemList data={data}></ItemList>

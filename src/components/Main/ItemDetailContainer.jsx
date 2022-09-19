@@ -6,6 +6,7 @@ import getData from '../../utils/getData';
 import ItemDetail from './ItemDetail';
 
 function ItemDetailContain() {
+    const [showComp, setShowComp] = useState(true);
     //variables para editar un array a pasar por un filtro y pasar un solo objeto al componente ItemDetail
     const [data, setData] = useState({});
     //variable para recibir la categoria de la ruta de navegacion
@@ -18,14 +19,16 @@ function ItemDetailContain() {
         if (id) {
             //si hay devuelve un objeto con el id que se muestra en la ruta. y lo setea en la variable data.
             getData(2000, dataFromDB.find((element) => element.id == id))
-                .then(result => setData(result))
+                .then(result => {
+                    setData(result)
+                    setShowComp(false);
+                })
         }
     }, [id, categoria])
-    console.log(data.id)
     return (
         <>
             {
-                data.id === undefined ? <p className="text-center fs-1">...Cargando</p> : <div>
+                showComp ? <p className="text-center fs-1">...Cargando</p> : <div>
                     <ItemDetail producto={data} />
                 </div >
             }
