@@ -24,10 +24,13 @@ function ItemListContainer({ title }) {
 
     }, [categoria])
     return (<>
-        <h1 className="text-center">{title}</h1>
-        <section className="container-lg containerProducts ">
-            <ItemList data={data}></ItemList>
-        </section>
+        {data.length === 0 ? <p className="text-center fs-1">...Cargando</p> :
+            <><h1 className="text-center">{title}</h1>
+                <section className="container-lg containerProducts ">
+                    <ItemList data={data}></ItemList>
+                </section></>
+        }
+
     </>
     )
 }

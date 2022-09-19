@@ -21,10 +21,17 @@ function ItemDetailContain() {
                 .then(result => setData(result))
         }
     }, [id, categoria])
+    console.log(data.id)
     return (
-        <div>
-            <ItemDetail producto={data} />
-        </div >
+        <>
+            {
+                data.id === undefined ? <p className="text-center fs-1">...Cargando</p> : <div>
+                    <ItemDetail producto={data} />
+                </div >
+            }
+        </>
+
+
     )
 }
 

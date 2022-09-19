@@ -12,7 +12,7 @@ function Cart() {
             <div className='contTitleCart my-4'>
                 <div className='rowCartTitle row'>
                     <h1 className='col-10'>Tu Carrito</h1>
-                    <button onClick={myCart.clear} type="button" className="btn btn-primary col-2 btnClear">Borrar Carrito</button>
+                    <button onClick={myCart.clear} type="button" className="btn btn-primary col-2 btnClear" disabled={myCart.cartList.length === 0 && true}>Borrar Carrito</button>
                 </div>
             </div>
 
