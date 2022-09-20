@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import dataFromDB from '../../utils/dataBase'
 import getData from '../../utils/getData';
 import ItemDetail from './ItemDetail';
-
+import Loading from "./LazyLoading";
 function ItemDetailContain() {
     const [showComp, setShowComp] = useState(true);
     //variables para editar un array a pasar por un filtro y pasar un solo objeto al componente ItemDetail
@@ -28,13 +28,11 @@ function ItemDetailContain() {
     return (
         <>
             {
-                showComp ? <p className="text-center fs-1">...Cargando</p> : <div>
+                showComp ? <Loading /> : <div>
                     <ItemDetail producto={data} />
                 </div >
             }
         </>
-
-
     )
 }
 

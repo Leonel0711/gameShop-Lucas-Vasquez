@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react'
 import dataFromDB from '../../utils/dataBase'
 import fetchData from '../../utils/fetchData'
 import { useParams } from "react-router-dom";
+import Loading from "./LazyLoading";
 //Contanedor de todos los productos a mostrar, recibe la base de datos y la funcion FetchData
-function ItemListContainer({ title }) {
+function ItemListContainer() {
     const [showComp, setShowComp] = useState(true);
     //variables para editar un array a pasar por props a ItemList
+    const [title, setTitle] = useState("Perifericos Gamer");
     const [data, setData] = useState([]);
     //variable para recibir la categoria de la ruta de navegacion
     const { categoria } = useParams();
@@ -18,6 +20,7 @@ function ItemListContainer({ title }) {
             //si hay devuelve un array con los elementos que tengan esa categoria y le pasa a ItemList
             fetchData(2000, dataFromDB.filter(producto => producto.category === categoria))
                 .then(result => {
+                    setTitle(categoria + " Gamer")
                     setData(result)
                     setShowComp(false);
                 })
@@ -25,19 +28,19 @@ function ItemListContainer({ title }) {
             //sino devuelve un array con todos los productos para pasarlo a ItemList
             fetchData(2000, dataFromDB)
                 .then(result => {
+                    setTitle("Perifericos Gamer")
                     setData(result);
                     setShowComp(false);
                 })
         }
     }, [categoria])
     return (<>
-        {showComp ? <p className="text-center fs-1">...Cargando</p> :
+        {showComp ? <Loading /> :
             <><h1 className="text-center">{title}</h1>
                 <section className="container-lg containerProducts ">
                     <ItemList data={data}></ItemList>
                 </section></>
         }
-
     </>
     )
 }

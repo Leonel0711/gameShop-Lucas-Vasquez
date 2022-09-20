@@ -10,7 +10,7 @@ function NavBarLinks() {
                 </Link>
 
                 <CommonLinks title="Iniciar Sesión" />
-                <Dropwdown title="Juegos" subLinks={["Teclado", "Mouse", "Auriculares"]} />
+                <Dropwdown title="Categorias" subLinks={["Teclado", "Mouse", "Auriculares"]} />
             </div>
         </div>
     )

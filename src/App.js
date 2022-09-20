@@ -19,8 +19,8 @@ function App() {
             {/* Routes contiene los componentes a mostrar con sus respectivas rutas, los : hacen referencia a que es cambiante esa parte */}
             <Routes>
               {/* Route es recibe el path que es la direccion y element que es el componente a mostrar en esa direccion */}
-              <Route path="/gameShop-Lucas-Vasquez/" element={<ItemListContainer title="Perifericos Gamer" />} />
-              <Route path="/gameShop-Lucas-Vasquez/:categoria" element={<ItemListContainer title="Perifericos Gamer" />} />
+              <Route path="/gameShop-Lucas-Vasquez/" element={<ItemListContainer />} />
+              <Route path="/gameShop-Lucas-Vasquez/:categoria" element={<ItemListContainer />} />
               <Route path="/gameShop-Lucas-Vasquez/:categoria/:id" element={<ItemDetailContain />} />
               <Route path="/gameShop-Lucas-Vasquez/cart" element={<Cart />} />
             </Routes>
