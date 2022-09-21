@@ -72,3 +72,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Comments
 
 Proyecto E-Commerce de una tienda de perifericos, github-page : [https://leonel0711.github.io/gameShop-Lucas-Vasquez/](https://leonel0711.github.io/gameShop-Lucas-Vasquez/)
+
+### Dependencies
+`react-router-dom` npm i react-router-dom
+Para la navegacion interna del proyecto.
+
+`react-icons` npm install react-icons --save
+Para los iconos usados.
+
+`toastify-js` npm install --save toastify-js
+Para la alerta al agregar productos al carrito

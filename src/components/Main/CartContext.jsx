@@ -1,5 +1,7 @@
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
+import Swal from 'sweetalert2'
+
 import { createContext, useState } from "react";
 export const CartContext = createContext();
 
@@ -50,7 +52,25 @@ export const CartContextProvider = ({ children }) => {
     }
     //Limpia todo el carrito
     const clear = () => {
-        setCartList([]);
+        Swal.fire({
+            title: '¿Esta seguro?',
+            text: "No podra revertirlo!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Borrado!',
+                    'Su compra ha sido borrada.',
+                    'success'
+                )
+                setCartList([]);
+            }
+        })
+
     }
     return (
         <CartContext.Provider value={{ cartList, addItem, borrar, clear, getFinalPrice, getProdPrice, getAmountProds }}>

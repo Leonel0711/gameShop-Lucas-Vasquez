@@ -28,7 +28,7 @@ function ItemDetail({ producto }) {
                 <div className='countDetail'>
                     {contador === 0 ? <ItemCount stock={randomStock} initial={contador} onAdd={onAdd}></ItemCount> :
                         <Link to="/gameShop-Lucas-Vasquez/cart">
-                            <button type="button" className="btn btn-primary">Ver Carrito</button>
+                            <button type="button" className="btn btn-primary">Finalizar compra</button>
                         </Link>
                     }
 
