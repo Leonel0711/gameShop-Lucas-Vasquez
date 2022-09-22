@@ -1,10 +1,11 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import dataFromDB from '../../utils/dataBase'
-import getData from '../../utils/getData';
 import ItemDetail from './ItemDetail';
 import Loading from "./LazyLoading";
+import { doc, DocumentSnapshot, getDoc, onSnapshot } from "firebase/firestore";
+import { db } from '../../utils/fireBase'
+
 function ItemDetailContain() {
     const [showComp, setShowComp] = useState(true);
     //variables para editar un array a pasar por un filtro y pasar un solo objeto al componente ItemDetail
@@ -15,16 +16,25 @@ function ItemDetailContain() {
     const { id } = useParams();
     //actualiza el contenido del container si se altera la ruta de navegacion.
     useEffect(() => {
-        //verifica si hay un id en la ruta
-        if (id) {
-            //si hay devuelve un objeto con el id que se muestra en la ruta. y lo setea en la variable data.
-            getData(2000, dataFromDB.find((element) => element.id == id))
-                .then(result => {
-                    setData(result)
-                    setShowComp(false);
-                })
+
+        setShowComp(true);
+        async function fetchData() {
+            /* const producto = doc(db, `products/${id}`)
+            onSnapshot(producto, (docSnapshot) => {
+                if (docSnapshot.exists()) {
+                    const docData = docSnapshot.data();
+                    const prod = JSON.parse(JSON.stringify(docData));
+                    prod.id = id;
+                    setData(prod);
+                }
+            }) */
+            const docSnap = await getDoc(doc(db, 'products', id))
+            let prod = { id: id, ...docSnap.data() }
+            setData(prod)
+            setShowComp(false);
         }
-    }, [id, categoria])
+        fetchData()
+    }, [id])
     return (
         <>
             {

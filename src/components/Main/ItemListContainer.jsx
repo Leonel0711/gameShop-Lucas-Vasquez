@@ -1,9 +1,9 @@
 import ItemList from "./ItemList";
 import { useEffect, useState } from 'react'
-import dataFromDB from '../../utils/dataBase'
-import fetchData from '../../utils/fetchData'
 import { useParams } from "react-router-dom";
 import Loading from "./LazyLoading";
+import { collection, getDocs, where, query } from "firebase/firestore";
+import { db } from '../../utils/fireBase'
 //Contanedor de todos los productos a mostrar, recibe la base de datos y la funcion FetchData
 function ItemListContainer() {
     const [showComp, setShowComp] = useState(true);
@@ -15,24 +15,32 @@ function ItemListContainer() {
     //actualiza el contenido del container si se altera la ruta de navegacion.
     useEffect(() => {
         setShowComp(true);
-        //verifica si hay una categoria en la ruta
-        if (categoria) {
-            //si hay devuelve un array con los elementos que tengan esa categoria y le pasa a ItemList
-            fetchData(2000, dataFromDB.filter(producto => producto.category === categoria))
-                .then(result => {
-                    setTitle(categoria + " Gamer")
-                    setData(result)
-                    setShowComp(false);
-                })
-        } else {
-            //sino devuelve un array con todos los productos para pasarlo a ItemList
-            fetchData(2000, dataFromDB)
-                .then(result => {
-                    setTitle("Perifericos Gamer")
-                    setData(result);
-                    setShowComp(false);
-                })
+        async function fetchData() {
+            if (categoria) {
+                //si hay devuelve un array con los elementos que tengan esa categoria y le pasa a ItemList
+                const q = query(collection(db, "products"), where('category', '==', categoria))
+                const querySnapshot = await getDocs(q);
+                const products = querySnapshot.docs.map(item => ({
+                    id: item.id,
+                    ...item.data()
+                }))
+                setData(products)
+                setTitle(categoria)
+            } else {
+                //sino devuelve un array con todos los productos para pasarlo a ItemList
+                const querySnapshot = await getDocs(collection(db, "products"));
+                const products = querySnapshot.docs.map(item => ({
+                    id: item.id,
+                    ...item.data()
+                }))
+                setData(products)
+                setTitle("Perifericos Gamer")
+            }
+            setShowComp(false);
         }
+        fetchData()
+
+
     }, [categoria])
     return (<>
         {showComp ? <Loading /> :
