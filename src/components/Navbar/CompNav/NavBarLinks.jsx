@@ -8,8 +8,10 @@ function NavBarLinks() {
                 <Link to="/gameShop-Lucas-Vasquez/">
                     <CommonLinks title="Home" />
                 </Link>
+                <Link to="/gameShop-Lucas-Vasquez/user/login">
+                    <CommonLinks title="Iniciar Sesión" />
+                </Link>
 
-                <CommonLinks title="Iniciar Sesión" />
                 <Dropwdown title="Categorias" subLinks={["Teclado", "Mouse", "Auriculares"]} />
             </div>
         </div>

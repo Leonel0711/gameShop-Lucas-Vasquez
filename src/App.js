@@ -6,6 +6,7 @@ import ItemDetailContain from "./components/Main/ItemDetailContainer";
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Cart from "./components/Main/Cart";
 import CartContextProvider from "./components/Main/CartContext";
+import LoginContainer from "./components/Main/LoginContainer";
 
 //Funcion compiladora de los componentes creados
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/gameShop-Lucas-Vasquez/:categoria" element={<ItemListContainer />} />
               <Route path="/gameShop-Lucas-Vasquez/:categoria/:id" element={<ItemDetailContain />} />
               <Route path="/gameShop-Lucas-Vasquez/cart" element={<Cart />} />
+              <Route path="/gameShop-Lucas-Vasquez/user/:action" element={<LoginContainer />} />
             </Routes>
           </main>
           <Footer />

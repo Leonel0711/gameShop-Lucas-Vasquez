@@ -27,16 +27,14 @@ export const CartContextProvider = ({ children }) => {
     }
     //Busca el producto y le agrega una nueva cantidad y retorna el array con la nueva modificacion al objeto
     const addAmountCart = (product, amount) => {
-        return cartList.map(item => item.id == product.id && { ...item, amount: item.amount + amount })
+        return cartList.map(item => item.id === product.id ? { ...item, amount: item.amount + amount } : item)
     }
     //Añade el objeto y le agrega su cantidad, si esta en el carro aumenta solo la cantidad
     const addItem = (product, amount) => {
         if (isInCart(product.id) === undefined) {
             product.amount = amount;
             setCartList([...cartList, product]);
-        } else {
-            setCartList(addAmountCart(product, amount));
-        }
+        } else setCartList(addAmountCart(product, amount));
         Toastify({
             text: "Se han añadido " + amount + " productos",
             className: "info",
