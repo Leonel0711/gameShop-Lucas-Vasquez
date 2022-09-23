@@ -15,6 +15,7 @@ function ItemList({ data }) {
             marca={item.marca}
             precio={item.precio}
             categoria={item.category}
+            stock={item.stock}
           />
         ))}
     </div>

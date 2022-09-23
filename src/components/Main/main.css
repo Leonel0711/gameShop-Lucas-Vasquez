@@ -55,9 +55,9 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-height: 35rem;
+    max-height: 37rem;
     width: 18rem;
-    min-height: 35rem;
+    min-height: 37rem;
     padding: 0 1rem;
     border: 2px solid #cccccc;
     box-shadow:

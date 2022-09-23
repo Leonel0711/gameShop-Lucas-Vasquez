@@ -48,6 +48,9 @@ export const CartContextProvider = ({ children }) => {
     const borrar = (id) => {
         setCartList(cartList.filter(product => product.id !== id));
     }
+    const removeList = () => {
+        setCartList([]);
+    }
     //Limpia todo el carrito
     const clear = () => {
         Swal.fire({
@@ -71,7 +74,7 @@ export const CartContextProvider = ({ children }) => {
 
     }
     return (
-        <CartContext.Provider value={{ cartList, addItem, borrar, clear, getFinalPrice, getProdPrice, getAmountProds }}>
+        <CartContext.Provider value={{ cartList, addItem, borrar, clear, getFinalPrice, getProdPrice, getAmountProds, removeList }}>
             {children}
         </CartContext.Provider>
     )

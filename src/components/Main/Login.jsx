@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import { collection, getDocs, where, query } from "firebase/firestore";
 import { db } from '../../utils/fireBase'
 function Login() {
+    let navigate = useNavigate();
     async function validate() {
         let emailAddress = document.getElementById("validationCustom01").value;
         let password = document.getElementById("validationCustom02").value;
@@ -11,27 +13,32 @@ function Login() {
             id: item.id,
             ...item.data()
         }))
-        console.log(users)
         const userValidate = users.find(user => user.password === password);
-        console.log(userValidate)
         if (userValidate) {
-            sessionStorage.setItem('user', JSON.stringify(userValidate))
+            const newDateUser = {
+                name: userValidate.name,
+                mail: userValidate.mail,
+                phone: userValidate.phone,
+                address: userValidate.address,
+            }
+            const checkBoxData = document.getElementById('invalidCheck').checked;
+            checkBoxData ? localStorage.setItem('user', JSON.stringify(newDateUser)) : sessionStorage.setItem('user', JSON.stringify(newDateUser));
+            navigate("/gameShop-Lucas-Vasquez/", { replace: true });
         }
-
     }
     return (
         <div className='loginContainer '>
             <form className="row g-3 needs-validation" noValidate>
                 <div className="">
                     <label htmlFor="validationCustom01" className="form-label">Email</label>
-                    <input type="mail" className="form-control" id="validationCustom01" defaultValue="Mark" required />
+                    <input type="mail" className="form-control" id="validationCustom01" required />
                     <div className="valid-feedback">
                         Looks good!
                     </div>
                 </div>
                 <div className="">
                     <label htmlFor="validationCustom02" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="validationCustom02" defaultValue="Otto" required />
+                    <input type="password" className="form-control" id="validationCustom02" required />
                     <div className="valid-feedback">
                         Looks good!
                     </div>
@@ -40,7 +47,7 @@ function Login() {
                     <div className="form-check">
                         <input className="form-check-input" type="checkbox" defaultValue id="invalidCheck" required />
                         <label className="form-check-label" htmlFor="invalidCheck">
-                            Agree to terms and conditions
+                            Recordarme
                         </label>
                         <div className="invalid-feedback">
                             You must agree before submitting.
