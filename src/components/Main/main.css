@@ -265,6 +265,15 @@ main {
     overflow: hidden;
 }
 
+.textLoading2 {
+    display: block;
+    font-family: monospace;
+    white-space: nowrap;
+    width: 18ch;
+    animation: typing 2s steps(18), blink 2s infinite step-end alternate;
+    overflow: hidden;
+}
+
 @keyframes typing {
     from {
         width: 0;

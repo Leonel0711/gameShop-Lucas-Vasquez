@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 function Cart() {
     let navigate = useNavigate();
     const [showComp, setShowComp] = useState(true);
+    const [showLoading, setShowLoading] = useState(true)
     const myCart = useContext(CartContext);
     const createOrder = async () => {
         if (localStorage.getItem('user') || sessionStorage.getItem('user')) {
@@ -39,6 +40,7 @@ function Cart() {
                 'Su compra se realizo con exito',
                 'success'
             )
+            setShowLoading(true);
         } else {
             Swal.fire(
                 'Log In',
@@ -55,28 +57,40 @@ function Cart() {
     }, [myCart.cartList])
     return (
         <div className='mainCarrito text-center'>
-            <div className='contTitleCart my-4'>
-                <div className='rowCartTitle row'>
-                    <h1 className='col-10'>Tu Carrito</h1>
-                    {showComp === false && <button onClick={myCart.clear} type="button" className="btn btn-primary col-2 btnClear" >Borrar Carrito</button>}
-                </div>
-            </div>
-
-            {showComp ?
-                <div>
-                    <h2 className='textNoCart'>No hay productos agregados</h2>
-                    <Link to="/gameShop-Lucas-Vasquez/"><button type="button" className="btn btn-primary">Seguir comprando</button>
-                    </Link>
-                </div>
-                : <>
-                    <div className=' container-xxl'>
-                        {myCart.cartList.map(producto => <ProductContainer key={producto.id} product={producto} btnAction={myCart.borrar} />)}
+            {showLoading ?
+                <>
+                    <div className='contTitleCart my-4'>
+                        <div className='rowCartTitle row'>
+                            <h1 className='col-10'>Tu Carrito</h1>
+                            {showComp === false && <button onClick={myCart.clear} type="button" className="btn btn-primary col-2 btnClear" >Borrar Carrito</button>}
+                        </div>
                     </div>
-                    <div className='finalPriceBox container-xxl'>
-                        <p className='pFinalText'>Total: $ {new Intl.NumberFormat('es-MX').format(myCart.getFinalPrice())}</p>
-                        <button type="button" className="btn btn-primary" onClick={createOrder}>Crear Orden</button>
+                    {showComp ?
+                        <div>
+                            <h2 className='textNoCart'>No hay productos agregados</h2>
+                            <Link to="/gameShop-Lucas-Vasquez/"><button type="button" className="btn btn-primary">Seguir comprando</button>
+                            </Link>
+                        </div>
+                        : <>
+                            <div className=' container-xxl'>
+                                {myCart.cartList.map(producto => <ProductContainer key={producto.id} product={producto} btnAction={myCart.borrar} />)}
+                            </div>
+                            <div className='finalPriceBox container-xxl'>
+                                <p className='pFinalText'>Total: $ {new Intl.NumberFormat('es-MX').format(myCart.getFinalPrice())}</p>
+                                <button type="button" className="btn btn-primary" onClick={() => {
+                                    setShowLoading(false);
+                                    createOrder();
+                                }}>Crear Orden</button>
+                            </div>
+                        </>}
+                </> :
+                <><div className='contDad'>
+                    <div>
+                        <h1 className='textLoading2'>Cargando Compra...</h1>
                     </div>
-                </>}
+                    <div className='spinner'></div>
+                </div></>
+            }
 
 
         </div>
