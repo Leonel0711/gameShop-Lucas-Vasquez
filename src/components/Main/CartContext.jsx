@@ -3,10 +3,10 @@ import "toastify-js/src/toastify.css"
 import Swal from 'sweetalert2'
 
 import { createContext, useState } from "react";
+
 export const CartContext = createContext();
 
-
-export const CartContextProvider = ({ children }) => {
+const CartContextProvider = ({ children }) => {
     const [cartList, setCartList] = useState([]);
 
     const getAmountProds = () => {

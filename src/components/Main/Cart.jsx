@@ -4,6 +4,7 @@ import { CartContext } from './CartContext';
 import ProductContainer from './ProductContainer';
 import { db } from '../../utils/fireBase'
 import { doc, setDoc, updateDoc, serverTimestamp, collection, increment } from "firebase/firestore";
+import { SesionContext } from "./SesionContext";
 import Swal from 'sweetalert2'
 
 function Cart() {
@@ -11,9 +12,9 @@ function Cart() {
     const [showComp, setShowComp] = useState(true);
     const [showLoading, setShowLoading] = useState(true)
     const myCart = useContext(CartContext);
+    const sesion = useContext(SesionContext);
     const createOrder = async () => {
-        if (localStorage.getItem('user') || sessionStorage.getItem('user')) {
-            const dataUser = JSON.parse(localStorage.getItem('user') ? localStorage.getItem('user') : sessionStorage.getItem('user'))
+        if (sesion.user) {
             const itemsOrder = myCart.cartList.map(item => ({
                 id: item.id,
                 title: item.title,
@@ -21,7 +22,7 @@ function Cart() {
                 quantity: item.amount
             }))
             const order = {
-                buyer: dataUser,
+                buyer: sesion.user,
                 items: itemsOrder,
                 date: serverTimestamp(),
                 total: myCart.getFinalPrice(),

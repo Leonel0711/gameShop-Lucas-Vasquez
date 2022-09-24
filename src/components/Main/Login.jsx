@@ -2,25 +2,28 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, where, query } from "firebase/firestore";
 import { db } from '../../utils/fireBase'
+import { SesionContext } from "./SesionContext";
+import { useContext } from "react";
 function Login() {
+    const sesion = useContext(SesionContext)
     let navigate = useNavigate();
     async function validate() {
         let emailAddress = document.getElementById("validationCustom01").value;
         let password = document.getElementById("validationCustom02").value;
-        const q = query(collection(db, "users"), where('mail', '==', emailAddress))
+        const q = query(collection(db, "users"), where('mail', '==', emailAddress), where("password", "==", password))
         const querySnapshot = await getDocs(q);
-        const users = querySnapshot.docs.map(item => ({
+        const [users] = querySnapshot.docs.map(item => ({
             id: item.id,
             ...item.data()
         }))
-        const userValidate = users.find(user => user.password === password);
-        if (userValidate) {
+        if (users) {
             const newDateUser = {
-                name: userValidate.name,
-                mail: userValidate.mail,
-                phone: userValidate.phone,
-                address: userValidate.address,
+                name: users.name,
+                mail: users.mail,
+                phone: users.phone,
+                address: users.address,
             }
+            sesion.setDateUser(newDateUser);
             const checkBoxData = document.getElementById('invalidCheck').checked;
             checkBoxData ? localStorage.setItem('user', JSON.stringify(newDateUser)) : sessionStorage.setItem('user', JSON.stringify(newDateUser));
             navigate("/gameShop-Lucas-Vasquez/", { replace: true });

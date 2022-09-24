@@ -6,13 +6,14 @@ import ItemDetailContain from "./components/Main/ItemDetailContainer";
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Cart from "./components/Main/Cart";
 import CartContextProvider from "./components/Main/CartContext";
+import SesionContextProvider from "./components/Main/SesionContext";
 import LoginContainer from "./components/Main/LoginContainer";
 
 //Funcion compiladora de los componentes creados
 function App() {
   return (
     <>
-      <CartContextProvider>
+      <SesionContextProvider><CartContextProvider>
         {/* eL BrowserRouter contiene los componentes para mostrar */}
         <BrowserRouter>
           <Navbar />
@@ -29,7 +30,8 @@ function App() {
           </main>
           <Footer />
         </BrowserRouter>
-      </CartContextProvider>
+      </CartContextProvider></SesionContextProvider>
+
 
     </>
   );
