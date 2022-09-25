@@ -31,6 +31,7 @@ function Login() {
     }
     return (
         <div className='loginContainer '>
+            <h1>Iniciar Sesion</h1>
             <form className="row g-3 needs-validation" noValidate>
                 <div className="">
                     <label htmlFor="validationCustom01" className="form-label">Email</label>

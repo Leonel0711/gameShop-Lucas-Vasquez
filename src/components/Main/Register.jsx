@@ -46,7 +46,6 @@ function Register() {
                 sesion.setDateUser(dateToSession);
                 const checkBoxData = document.getElementById('invalidCheck').checked;
                 checkBoxData ? localStorage.setItem('user', JSON.stringify(dateToSession)) : sessionStorage.setItem('user', JSON.stringify(dateToSession));
-                console.log("lo logro señor");
                 navigate("/gameShop-Lucas-Vasquez/", { replace: true });
             } else {
                 setTexto("Ya exite una cuenta con ese mail")
@@ -60,6 +59,7 @@ function Register() {
     }
     return (
         <div className='loginContainer '>
+            <h1>Registrarse</h1>
             <form className="row g-3 needs-validation" noValidate>
                 <div className="">
                     <label htmlFor="email" className="form-label">Email</label>

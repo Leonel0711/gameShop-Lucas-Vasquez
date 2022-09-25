@@ -308,7 +308,7 @@ main {
 
 /*Login / Register*/
 .fatherLogin {
-    height: 80vh;
+    min-height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -320,5 +320,6 @@ main {
     border-radius: 10px;
     box-shadow: 1px 1px 41px rgba(0, 0, 0, 0.2);
     padding: 10px;
+    margin: 4rem 0.5rem;
     margin-bottom: 2rem;
 }
