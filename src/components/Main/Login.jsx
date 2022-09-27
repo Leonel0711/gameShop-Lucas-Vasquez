@@ -1,31 +1,17 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, where, query } from "firebase/firestore";
-import { db } from '../../utils/fireBase'
 import { SesionContext } from "./SesionContext";
 import { useContext } from "react";
+
 function Login() {
     const sesion = useContext(SesionContext)
     let navigate = useNavigate();
-    async function validate() {
-        let emailAddress = document.getElementById("validationCustom01").value;
-        let password = document.getElementById("validationCustom02").value;
-        const q = query(collection(db, "users"), where('mail', '==', emailAddress), where("password", "==", password))
-        const querySnapshot = await getDocs(q);
-        const [users] = querySnapshot.docs.map(item => ({
-            id: item.id,
-            ...item.data()
-        }))
-        if (users) {
-            const newDateUser = {
-                name: users.name,
-                mail: users.mail,
-                phone: users.phone,
-                address: users.address,
-            }
-            sesion.setDateUser(newDateUser);
-            const checkBoxData = document.getElementById('invalidCheck').checked;
-            checkBoxData ? localStorage.setItem('user', JSON.stringify(newDateUser)) : sessionStorage.setItem('user', JSON.stringify(newDateUser));
+    //Validate the data and redirect to home
+    function validate() {
+        const emailAddress = document.getElementById("validationCustom01").value;
+        const password = document.getElementById("validationCustom02").value;
+        const checkBoxData = document.getElementById('invalidCheck').checked;
+        if (sesion.verifyLogin(emailAddress, password, checkBoxData)) {
             navigate("/gameShop-Lucas-Vasquez/", { replace: true });
         }
     }

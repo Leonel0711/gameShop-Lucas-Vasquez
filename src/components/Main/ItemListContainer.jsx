@@ -7,17 +7,17 @@ import { db } from '../../utils/fireBase'
 //Contanedor de todos los productos a mostrar, recibe la base de datos y la funcion FetchData
 function ItemListContainer() {
     const [showComp, setShowComp] = useState(true);
-    //variables para editar un array a pasar por props a ItemList
-    const [title, setTitle] = useState("Perifericos Gamer");
+    const [title, setTitle] = useState("Periféricos Gamer");
+    //variable that content an Array with data of products
     const [data, setData] = useState([]);
-    //variable para recibir la categoria de la ruta de navegacion
+    //variable to find some data from database
     const { categoria } = useParams();
-    //actualiza el contenido del container si se altera la ruta de navegacion.
+
     useEffect(() => {
         setShowComp(true);
+        //Get data of products from the dataBase depend of category
         async function fetchData() {
             if (categoria) {
-                //si hay devuelve un array con los elementos que tengan esa categoria y le pasa a ItemList
                 const q = query(collection(db, "products"), where('category', '==', categoria))
                 const querySnapshot = await getDocs(q);
                 const products = querySnapshot.docs.map(item => ({
@@ -27,14 +27,13 @@ function ItemListContainer() {
                 setData(products)
                 setTitle(categoria)
             } else {
-                //sino devuelve un array con todos los productos para pasarlo a ItemList
                 const querySnapshot = await getDocs(collection(db, "products"));
                 const products = querySnapshot.docs.map(item => ({
                     id: item.id,
                     ...item.data()
                 }))
                 setData(products)
-                setTitle("Perifericos Gamer")
+                setTitle("Periféricos Gamer")
             }
             setShowComp(false);
         }

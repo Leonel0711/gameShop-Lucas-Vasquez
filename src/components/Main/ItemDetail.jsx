@@ -7,12 +7,11 @@ import { CartContext } from './CartContext';
 function ItemDetail({ producto }) {
     const [contador, setContador] = useState(0);
     const myContext = useContext(CartContext);
-    //funcion onAdd del desafio ItemCount para pasar por props a ItemCount y que muestre por alert la cantidad añadida de producto
+    //Function to add a quantity and product to cartList
     const onAdd = (count) => {
         setContador(count)
         myContext.addItem(producto, count);
     }
-    //Este componente muestra el objeto recibido por props.
     return (
         <div id={producto.id} className='fatherDetail container-lg'>
             <div className='imgDetail'>

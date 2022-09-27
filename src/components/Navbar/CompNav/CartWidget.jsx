@@ -3,6 +3,7 @@ import { CartContext } from "../../Main/CartContext";
 
 function CartWidget() {
     const myCart = useContext(CartContext);
+
     //Simplemente es un button con un icono ya sea por svg o iconos de react y un numero hardcodeado
     return (
         <>

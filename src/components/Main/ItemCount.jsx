@@ -2,9 +2,9 @@ import { useState } from "react";
 import Swal from 'sweetalert2'
 //Stock puede ser hardcodeado , initial normalmente es 1, y onAdd es la funcion pasada por props
 function ItemCount({ stock, initial, onAdd }) {
-    const tStock = stock >= 1 ? true : false;
+    const tStock = stock >= 1;
     const [count, setCount] = useState(initial);
-    //Funcion para actualizar para arriba el contador y evita que sea mayor al stock disponible
+
     const handlerPlus = () => {
         count < stock ? setCount(count + 1) : Swal.fire(
             'Stock limitado',
@@ -12,11 +12,10 @@ function ItemCount({ stock, initial, onAdd }) {
             'warning'
         );
     }
-    //Funcion para actualizar el contador de manera negativa y evita que sea menor que initial
+
     const handlerMinus = () => {
         count > initial && setCount(count - 1);
     }
-    //Este componente muestra un boton para restar, uno para sumar, un label para mostrar el contador y un boton para realizar la funcion onAdd
     return (< >
         <div className="d-flex modalGroup  ">
             <div className="modalButton l_button" onClick={handlerMinus} >

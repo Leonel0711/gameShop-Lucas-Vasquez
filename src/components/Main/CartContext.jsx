@@ -1,35 +1,39 @@
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
 import Swal from 'sweetalert2'
-
 import { createContext, useState } from "react";
 
 export const CartContext = createContext();
-
+//Context from Cart
 const CartContextProvider = ({ children }) => {
+    //Array with productos as a cart
     const [cartList, setCartList] = useState([]);
 
+    //Get amunt of products to CartWidget
     const getAmountProds = () => {
         let amountProds = cartList.map(item => item.amount);
         return amountProds.reduce((acumulador, amount) => acumulador += amount, 0);
     }
+    //Get the final price for product
     const getProdPrice = (id) => {
         let pricePerAmount = cartList.find((prod) => prod.id === id);
         return (pricePerAmount.amount * pricePerAmount.precio)
     }
+    //Get the final price from cartList
     const getFinalPrice = () => {
         let pricePerAmount = cartList.map(item => (item.precio * item.amount));
-        return pricePerAmount.reduce((acumulador, precioXProd) => acumulador += precioXProd, 0);
+        return pricePerAmount.reduce((acumulador, precioXProd) => acumulador + precioXProd, 0);
     }
-    //Revisa si el objeto esta en el carrito
+    //Verify if the product is in the cartList
     const isInCart = (id) => {
         return cartList.find(producto => id === producto.id);
     }
-    //Busca el producto y le agrega una nueva cantidad y retorna el array con la nueva modificacion al objeto
+    //Add amount to a product in the cartList
     const addAmountCart = (product, amount) => {
         return cartList.map(item => item.id === product.id ? { ...item, amount: item.amount + amount } : item)
     }
-    //Añade el objeto y le agrega su cantidad, si esta en el carro aumenta solo la cantidad
+
+    //Add a product to cartlist
     const addItem = (product, amount) => {
         if (isInCart(product.id) === undefined) {
             product.amount = amount;
@@ -44,10 +48,11 @@ const CartContextProvider = ({ children }) => {
         }).showToast();
 
     }
-    //Borra al producto del carrito
+    //Remove one product from cartList
     const borrar = (id) => {
         setCartList(cartList.filter(product => product.id !== id));
     }
+    //Clean the cartList
     const removeList = () => {
         setCartList([]);
     }

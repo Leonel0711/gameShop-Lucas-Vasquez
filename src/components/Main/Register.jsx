@@ -1,16 +1,17 @@
 import React from 'react'
-import { db } from '../../utils/fireBase'
-import { doc, setDoc, collection, getDocs, where, query } from "firebase/firestore";
 import { SesionContext } from "./SesionContext";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
+
 function Register() {
     const [alerta, setAlerta] = useState(false);
     const [texto, setTexto] = useState("");
     const sesion = useContext(SesionContext)
     let navigate = useNavigate();
-    const validateDates = async () => {
+    //Validate the data and redirect to home
+    const validateDates = () => {
         setAlerta(false);
+        //Get all the data and Verify.
         const email = document.getElementById("email").value;
         const reemail = document.getElementById("re-email").value;
         const password = document.getElementById("password").value;
@@ -18,40 +19,15 @@ function Register() {
         const lastName = document.getElementById("lastName").value;
         const address = document.getElementById("address").value;
         const phone = document.getElementById("phone").value;
+        const checkBoxData = document.getElementById('invalidCheck').checked;
         if ((email === reemail) && password && name && lastName && address && phone) {
-            const q = query(collection(db, "users"), where('mail', '==', email))
-            const querySnapshot = await getDocs(q);
-            const [users] = querySnapshot.docs.map(item => ({
-                id: item.id,
-                ...item.data()
-            }))
-            if (!users) {
-                const newUser = {
-                    address: address,
-                    lastName: lastName,
-                    mail: email,
-                    name: name,
-                    password: password,
-                    phone: phone
-                }
-                const newOrderRef = doc(collection(db, "users"))
-                await setDoc(newOrderRef, newUser);
-                const dateToSession =
-                {
-                    name: name,
-                    mail: email,
-                    phone: phone,
-                    address: address,
-                }
-                sesion.setDateUser(dateToSession);
-                const checkBoxData = document.getElementById('invalidCheck').checked;
-                checkBoxData ? localStorage.setItem('user', JSON.stringify(dateToSession)) : sessionStorage.setItem('user', JSON.stringify(dateToSession));
+            if (sesion.verifyRegister(email)) {
+                sesion.CreateUserToDataBase(email, password, name, lastName, address, phone, checkBoxData)
                 navigate("/gameShop-Lucas-Vasquez/", { replace: true });
             } else {
                 setTexto("Ya exite una cuenta con ese mail")
                 setAlerta(true);
             }
-
         } else {
             setTexto("Verifique haber llenado todos los datos correctamente");
             setAlerta(true);

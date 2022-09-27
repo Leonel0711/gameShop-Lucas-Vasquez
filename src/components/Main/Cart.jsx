@@ -9,11 +9,15 @@ import Swal from 'sweetalert2'
 
 function Cart() {
     let navigate = useNavigate();
+
     const [showComp, setShowComp] = useState(true);
+
     const [showLoading, setShowLoading] = useState(true)
     const myCart = useContext(CartContext);
     const sesion = useContext(SesionContext);
+    //Create the order to database.
     const createOrder = async () => {
+        //Verify if there are someuser
         if (sesion.user) {
             const itemsOrder = myCart.cartList.map(item => ({
                 id: item.id,
@@ -27,8 +31,10 @@ function Cart() {
                 date: serverTimestamp(),
                 total: myCart.getFinalPrice(),
             }
+            //Send the order to database.
             const newOrderRef = doc(collection(db, "orders"))
             await setDoc(newOrderRef, order);
+            //Update the stock of products
             myCart.cartList.forEach(async (product) => {
                 const itemRef = doc(db, "products", product.id)
                 await updateDoc(itemRef, {

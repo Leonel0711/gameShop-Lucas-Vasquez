@@ -30,8 +30,6 @@ function NavBarLinks() {
                             <CommonLinks title="Registrarse" />
                         </Link>
                     </>}
-
-
                 <Dropwdown title="Categorias" subLinks={["Teclado", "Mouse", "Auriculares"]} />
             </div>
         </div>
