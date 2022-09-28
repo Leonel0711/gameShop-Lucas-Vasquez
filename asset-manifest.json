@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/gameShop-Lucas-Vasquez/static/css/main.b6ad60d2.css",
-    "main.js": "/gameShop-Lucas-Vasquez/static/js/main.d08a5e9b.js",
+    "main.css": "/gameShop-Lucas-Vasquez/static/css/main.f0b9ccf8.css",
+    "main.js": "/gameShop-Lucas-Vasquez/static/js/main.592e4f7b.js",
     "static/js/787.840e3d13.chunk.js": "/gameShop-Lucas-Vasquez/static/js/787.840e3d13.chunk.js",
     "index.html": "/gameShop-Lucas-Vasquez/index.html",
-    "main.b6ad60d2.css.map": "/gameShop-Lucas-Vasquez/static/css/main.b6ad60d2.css.map",
-    "main.d08a5e9b.js.map": "/gameShop-Lucas-Vasquez/static/js/main.d08a5e9b.js.map",
+    "main.f0b9ccf8.css.map": "/gameShop-Lucas-Vasquez/static/css/main.f0b9ccf8.css.map",
+    "main.592e4f7b.js.map": "/gameShop-Lucas-Vasquez/static/js/main.592e4f7b.js.map",
     "787.840e3d13.chunk.js.map": "/gameShop-Lucas-Vasquez/static/js/787.840e3d13.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b6ad60d2.css",
-    "static/js/main.d08a5e9b.js"
+    "static/css/main.f0b9ccf8.css",
+    "static/js/main.592e4f7b.js"
   ]
 }
