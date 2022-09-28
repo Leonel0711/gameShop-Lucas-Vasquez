@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import Loading from "./LazyLoading";
 import { collection, getDocs, where, query } from "firebase/firestore";
 import { db } from '../../utils/fireBase'
+import { animateScroll as scroll } from 'react-scroll';
 //Contanedor de todos los productos a mostrar, recibe la base de datos y la funcion FetchData
 function ItemListContainer() {
+    scroll.scrollToTop();
     const [showComp, setShowComp] = useState(true);
     const [title, setTitle] = useState("Periféricos Gamer");
     //variable that content an Array with data of products

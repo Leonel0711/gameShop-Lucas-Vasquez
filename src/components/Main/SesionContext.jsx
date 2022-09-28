@@ -23,8 +23,12 @@ function SesionContextProvider({ children }) {
             id: item.id,
             ...item.data()
         }))
-        transoformObjUser(users, checkBoxData)
-        return users;
+        if (users) {
+            transoformObjUser(users, checkBoxData)
+            return users;
+        } else {
+            return false
+        }
     }
     //Verify the data from Register to not use the same mail
     const verifyRegister = async (email) => {

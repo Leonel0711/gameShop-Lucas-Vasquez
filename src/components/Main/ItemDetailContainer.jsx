@@ -5,8 +5,9 @@ import ItemDetail from './ItemDetail';
 import Loading from "./LazyLoading";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from '../../utils/fireBase'
-
+import { animateScroll as scroll } from 'react-scroll';
 function ItemDetailContain() {
+    scroll.scrollToTop();
     const [showComp, setShowComp] = useState(true);
     //variables para editar un array a pasar por un filtro y pasar un solo objeto al componente ItemDetail
     const [data, setData] = useState({});

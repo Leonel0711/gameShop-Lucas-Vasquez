@@ -6,12 +6,12 @@ import { db } from '../../utils/fireBase'
 import { doc, setDoc, updateDoc, serverTimestamp, collection, increment } from "firebase/firestore";
 import { SesionContext } from "./SesionContext";
 import Swal from 'sweetalert2'
+import { animateScroll as scroll } from 'react-scroll';
 
 function Cart() {
+    scroll.scrollToTop();
     let navigate = useNavigate();
-
     const [showComp, setShowComp] = useState(true);
-
     const [showLoading, setShowLoading] = useState(true)
     const myCart = useContext(CartContext);
     const sesion = useContext(SesionContext);
@@ -34,26 +34,19 @@ function Cart() {
             //Send the order to database.
             const newOrderRef = doc(collection(db, "orders"))
             await setDoc(newOrderRef, order);
+            console.log(newOrderRef.id)
+            console.log(order);
+            Swal.fire('Compra Realizada', 'Su compra se realizo con exito su pedido es: ' + newOrderRef.id, 'success')
+            setShowLoading(true);
             //Update the stock of products
             myCart.cartList.forEach(async (product) => {
                 const itemRef = doc(db, "products", product.id)
-                await updateDoc(itemRef, {
-                    stock: increment(-product.amount)
-                });
+                await updateDoc(itemRef, { stock: increment(-product.amount) });
             });
             myCart.removeList()
-            Swal.fire(
-                'Compra Realizada',
-                'Su compra se realizo con exito',
-                'success'
-            )
-            setShowLoading(true);
+
         } else {
-            Swal.fire(
-                'Log In',
-                'Ingrese a su cuenta para continuar con su compra',
-                'error'
-            )
+            Swal.fire('Log In', 'Ingrese a su cuenta para continuar con su compra', 'error')
             navigate("/gameShop-Lucas-Vasquez/user/login", { replace: true });
         }
 

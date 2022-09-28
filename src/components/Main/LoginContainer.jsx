@@ -6,9 +6,8 @@ function LoginContainer() {
     const { action } = useParams()
     return (
         <div className='fatherLogin'>
-            {
-                action === "login" ? <Login /> : <Register />
-            }
+            {action === "login" && <Login />}
+            {action === "register" && <Register />}
         </div >
 
     )

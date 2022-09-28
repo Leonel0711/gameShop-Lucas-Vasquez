@@ -324,3 +324,12 @@ main {
     margin: 4rem 0.5rem;
     margin-bottom: 2rem;
 }
+
+.alertRed {
+    color: rgb(162, 2, 2);
+}
+
+.linkLogin-Register a {
+    color: #09f;
+    text-decoration: none;
+}

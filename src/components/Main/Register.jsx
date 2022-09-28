@@ -2,15 +2,28 @@ import React from 'react'
 import { SesionContext } from "./SesionContext";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-
+import { Link } from "react-router-dom"
+import { animateScroll as scroll } from 'react-scroll';
 function Register() {
+    scroll.scrollToTop();
     const [alerta, setAlerta] = useState(false);
     const [texto, setTexto] = useState("");
     const sesion = useContext(SesionContext)
     let navigate = useNavigate();
+    const registerEvent = document.querySelectorAll(".register");
+    registerEvent.forEach((input) => {
+        input.onclick = () => {
+            setAlerta(false);
+        }
+    })
+    function validarDato(dato) {
+        if (dato.trim() != "" && dato.trim != undefined) {
+            return true;
+        }
+        return false;
+    }
     //Validate the data and redirect to home
-    const validateDates = () => {
-        setAlerta(false);
+    const validateData = () => {
         //Get all the data and Verify.
         const email = document.getElementById("email").value;
         const reemail = document.getElementById("re-email").value;
@@ -20,14 +33,16 @@ function Register() {
         const address = document.getElementById("address").value;
         const phone = document.getElementById("phone").value;
         const checkBoxData = document.getElementById('invalidCheck').checked;
-        if ((email === reemail) && password && name && lastName && address && phone) {
-            if (sesion.verifyRegister(email)) {
-                sesion.CreateUserToDataBase(email, password, name, lastName, address, phone, checkBoxData)
-                navigate("/gameShop-Lucas-Vasquez/", { replace: true });
-            } else {
-                setTexto("Ya exite una cuenta con ese mail")
-                setAlerta(true);
-            }
+        if ((email === reemail) && validarDato(password) && validarDato(name) && validarDato(lastName) && validarDato(address) && validarDato(phone)) {
+            sesion.verifyRegister(email).then(resolve => {
+                if (!resolve) {
+                    sesion.CreateUserToDataBase(email, password, name, lastName, address, phone, checkBoxData)
+                    navigate("/gameShop-Lucas-Vasquez/", { replace: true });
+                } else {
+                    setTexto("Ya exite una cuenta con ese mail")
+                    setAlerta(true);
+                }
+            })
         } else {
             setTexto("Verifique haber llenado todos los datos correctamente");
             setAlerta(true);
@@ -39,31 +54,31 @@ function Register() {
             <form className="row g-3 needs-validation" noValidate>
                 <div className="">
                     <label htmlFor="email" className="form-label">Email</label>
-                    <input type="mail" className="form-control" id="email" required />
+                    <input type="mail" className="form-control register" id="email" required />
                 </div>
                 <div className="">
                     <label htmlFor="re-email" className="form-label">Re-Email</label>
-                    <input type="mail" className="form-control" id="re-email" required />
+                    <input type="mail" className="form-control register" id="re-email" required />
                 </div>
                 <div className="">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" required />
+                    <input type="password" className="form-control register" id="password" required />
                 </div>
                 <div className="">
                     <label htmlFor="name" className="form-label">Nombre</label>
-                    <input type="text" className="form-control" id="name" required />
+                    <input type="text" className="form-control register" id="name" required />
                 </div>
                 <div className="">
-                    <label htmlFor="lastName" className="form-label">Apellido</label>
-                    <input type="text" className="form-control" id="lastName" required />
+                    <label htmlFor="lastName" className="form-label register">Apellido</label>
+                    <input type="text" className="form-control register" id="lastName" required />
                 </div>
                 <div className="">
                     <label htmlFor="address" className="form-label">Direccion</label>
-                    <input type="text" className="form-control" id="address" required />
+                    <input type="text" className="form-control register" id="address" required />
                 </div>
                 <div className="">
-                    <label htmlFor="phone" className="form-label">Phone</label>
-                    <input type="text" className="form-control" id="phone" required />
+                    <label htmlFor="phone" className="form-label register">Phone</label>
+                    <input type="text" className="form-control register" id="phone" required />
                 </div>
                 <div className="col-12">
                     <div className="form-check">
@@ -74,12 +89,17 @@ function Register() {
                     </div>
                 </div>
                 {alerta && <div>
-                    <p>{texto}</p>
+                    <p className='alertRed'>{texto}</p>
                 </div>}
+                <div className='linkLogin-Register'>
+                    <Link to="/gameShop-Lucas-Vasquez/user/login">
+                        <p >Ya tengo una cuenta creada</p>
+                    </Link>
+                </div>
                 <div className="col-12">
                     <button className="btn btn-primary" type="submit" onClick={(event) => {
                         event.preventDefault()
-                        validateDates();
+                        validateData();
                     }}>Registrarse</button>
                 </div>
             </form>
