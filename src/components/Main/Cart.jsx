@@ -34,8 +34,6 @@ function Cart() {
             //Send the order to database.
             const newOrderRef = doc(collection(db, "orders"))
             await setDoc(newOrderRef, order);
-            console.log(newOrderRef.id)
-            console.log(order);
             Swal.fire('Compra Realizada', 'Su compra se realizo con exito su pedido es: ' + newOrderRef.id, 'success')
             setShowLoading(true);
             //Update the stock of products

@@ -35,7 +35,7 @@ function ItemCount({ stock, initial, onAdd }) {
             </div>
         </div>
         <div className="btnsAdd">
-            <button onClick={() => { tStock === true ? onAdd(count) : alert("No hay Stock"); }} disabled={count === 0 && true}>Agregar al carrito</button>
+            <button onClick={() => { tStock === true ? onAdd(count) : alert("No hay Stock"); }} disabled={stock === 0 && true}>Agregar al carrito</button>
         </div>
     </>)
 }

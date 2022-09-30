@@ -11,7 +11,6 @@ function SesionContextProvider({ children }) {
     window.onload = () => {
         if (localStorage.getItem('user') || sessionStorage.getItem('user')) {
             const dataUser = JSON.parse(localStorage.getItem('user') ? localStorage.getItem('user') : sessionStorage.getItem('user'))
-            console.log(dataUser);
             setUser(dataUser);
         }
     }
