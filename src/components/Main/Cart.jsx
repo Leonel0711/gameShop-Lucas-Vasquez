@@ -18,6 +18,7 @@ function Cart() {
     //Create the order to database.
     const createOrder = async () => {
         //Verify if there are someuser
+        setShowLoading(false);
         if (sesion.user) {
             const itemsOrder = myCart.cartList.map(item => ({
                 id: item.id,
@@ -35,14 +36,14 @@ function Cart() {
             const newOrderRef = doc(collection(db, "orders"))
             await setDoc(newOrderRef, order);
             Swal.fire('Compra Realizada', 'Su compra se realizo con exito su pedido es: ' + newOrderRef.id, 'success')
-            setShowLoading(true);
+
             //Update the stock of products
             myCart.cartList.forEach(async (product) => {
                 const itemRef = doc(db, "products", product.id)
                 await updateDoc(itemRef, { stock: increment(-product.amount) });
             });
             myCart.removeList()
-
+            setShowLoading(true);
         } else {
             Swal.fire('Log In', 'Ingrese a su cuenta para continuar con su compra', 'error')
             navigate("/gameShop-Lucas-Vasquez/user/login", { replace: true });

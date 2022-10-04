@@ -38,7 +38,16 @@ const CartContextProvider = ({ children }) => {
         if (isInCart(product.id) === undefined) {
             product.amount = amount;
             setCartList([...cartList, product]);
-        } else setCartList(addAmountCart(product, amount));
+        } else {
+            const arrayTest = addAmountCart(product, amount)
+            const productTest = arrayTest.find((item) => item.id == product.id)
+            if (productTest.stock >= productTest.amount) {
+                setCartList(addAmountCart(product, amount))
+            } else {
+                Swal.fire('Stock insuficiente', 'No puede ingresara mas cantidad que el stock disponible', 'error')
+                return false;
+            }
+        };
         Toastify({
             text: "Se han añadido " + amount + " productos",
             className: "info",
@@ -46,7 +55,7 @@ const CartContextProvider = ({ children }) => {
                 background: "linear-gradient(90deg, rgba(126,195,246,1) 0%, rgba(66,158,249,1) 50%, rgba(4,107,238,1) 100%)"
             }
         }).showToast();
-
+        return true;
     }
     //Remove one product from cartList
     const borrar = (id) => {

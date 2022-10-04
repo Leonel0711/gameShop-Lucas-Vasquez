@@ -9,8 +9,7 @@ function ItemDetail({ producto }) {
     const myContext = useContext(CartContext);
     //Function to add a quantity and product to cartList
     const onAdd = (count) => {
-        setContador(count)
-        myContext.addItem(producto, count);
+        myContext.addItem(producto, count) && setContador(count);
     }
     return (
         <div id={producto.id} className='fatherDetail container-lg'>
